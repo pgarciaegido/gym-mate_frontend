@@ -1,0 +1,19 @@
+{
+  "name": "gym-mate_frontend",
+  "version": "0.0.1",
+  "description": "Frontend of gym-mate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgarciaegido/gym-mate_frontend.git"
+  },
+  "author": "Pablo Garcia Egido <pgarciaegido@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgarciaegido/gym-mate_frontend/issues"
+  },
+  "homepage": "https://github.com/pgarciaegido/gym-mate_frontend#readme"
+}
