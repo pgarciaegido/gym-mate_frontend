@@ -10,7 +10,6 @@ export default class App extends React.Component {
 	tryout() {
 		this.tryout = true;
 	}
-
 	render() {
 		return (
 			<div style={{ textAlign: 'center' }}>
