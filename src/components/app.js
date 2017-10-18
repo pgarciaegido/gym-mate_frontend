@@ -15,7 +15,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div style={{ textAlign: 'center' }}>
-				<h1 className={appStyles.titulo}> Hello World</h1>
+				<h1 className={appStyles.titulo}> EOOEOEEO World</h1>
 			</div>
 		);
 	}

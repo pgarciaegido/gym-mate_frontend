@@ -1,26 +1,20 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-	template: './src/index.html',
-	filename: 'index.html',
-	inject: 'body'
-});
 
 module.exports = {
-	entry: './src/index.js',
-	output: {
-		path: path.resolve('dist'),
-		filename: 'index_bundle.js'
-	},
-	module: {
-		loaders: [
-			{ test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-			{ test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-			{ test: /\.css$/, loader: 'style-loader' },
-			{ test: /\.css$/, loader: 'css-loader', query: { modules: true, localIdentName: '[name]__[local]___[hash:base64:5]' } }
-		]
-	},
-	plugins: [HtmlWebpackPluginConfig]
+    entry: {
+        bleh: './src/index.js'
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title: 'Output Managment'
+        })
+    ],
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    }
 };
