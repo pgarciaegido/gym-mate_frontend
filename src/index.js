@@ -5,5 +5,10 @@ import App from './components/app';
 ReactDOM.render(<App />, document.getElementById('root'));
  */
 
+import { cube } from './math.js';
 
-console.log('jello');
+
+
+console.log(cube(2));
+
+alert('eoeo');
