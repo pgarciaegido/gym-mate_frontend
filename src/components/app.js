@@ -8,7 +8,7 @@ export default class App extends React.Component {
 	}
 
 	tryout() {
-		return true;
+		this.tryout = true;
 	}
 
 	render() {
