@@ -1,6 +1,7 @@
 import React from 'react';
+import appStyles from './app.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
 	constructor() {
 		super();
@@ -10,11 +11,14 @@ export default class App extends React.Component {
 	tryout() {
 		this.tryout = true;
 	}
+
 	render() {
 		return (
 			<div style={{ textAlign: 'center' }}>
-				<h1> Hello World</h1>
+				<h1 className={appStyles.titulo}> Hello World</h1>
 			</div>
 		);
 	}
 }
+
+export default App;
