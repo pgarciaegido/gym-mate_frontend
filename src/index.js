@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 
 ReactDOM.render(
-    <App />,
+    <App labelOn="On" labelOff="Off"/>,
      document.getElementById('root')
 );

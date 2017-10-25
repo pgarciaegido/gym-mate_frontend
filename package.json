@@ -18,6 +18,9 @@
   "bugs": {
     "url": "https://github.com/pgarciaegido/gym-mate_frontend/issues"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
+  },
   "homepage": "https://github.com/pgarciaegido/gym-mate_frontend#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -29,6 +32,8 @@
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "csv-loader": "^2.1.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-base": "^12.0.1",

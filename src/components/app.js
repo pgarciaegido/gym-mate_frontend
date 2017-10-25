@@ -1,22 +1,29 @@
 import React from 'react';
-import appStyles from './app.css';
+// import appStyles from './app.css';
 
 class App extends React.Component {
 
 	constructor() {
 		super();
-		this.prueba = 1;
+		this.state = {isChecked: false};
+		
+		this.onChange = this.onChange.bind(this);
 	}
 
-	tryout() {
-		this.tryout = true;
+	onChange() {
+		this.setState({ isChecked: !this.state.isChecked });
 	}
 
 	render() {
 		return (
-			<div style={{ textAlign: 'center' }}>
-				<h1 className={appStyles.titulo}>Hello World</h1>
-			</div>
+			<label>
+				<input
+					type="checkbox"
+					checked={this.state.isChecked}
+					onChange={this.onChange}
+				/>
+				{this.state.isChecked ? this.props.labelOn : this.props.labelOff }
+			</label>
 		);
 	}
 }
