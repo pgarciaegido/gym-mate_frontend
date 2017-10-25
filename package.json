@@ -29,8 +29,6 @@
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "csv-loader": "^2.1.1",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-base": "^12.0.1",
