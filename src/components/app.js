@@ -1,29 +1,29 @@
 import React from 'react';
 // import appStyles from './app.css';
 
+/**
+ *  App component... Super cool
+ */
 class App extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {isChecked: false};
 		
 		this.onChange = this.onChange.bind(this);
 	}
 
+	/**
+	 * @description Changes state
+	 * @returns {String} Nothing. Just sets state
+	 */
 	onChange() {
 		this.setState({ isChecked: !this.state.isChecked });
 	}
 
 	render() {
 		return (
-			<label>
-				<input
-					type="checkbox"
-					checked={this.state.isChecked}
-					onChange={this.onChange}
-				/>
-				{this.state.isChecked ? this.props.labelOn : this.props.labelOff }
-			</label>
+			<h1>Hoola</h1>
 		);
 	}
 }
