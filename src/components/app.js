@@ -1,9 +1,7 @@
 import React from 'react';
-// import appStyles from './app.css';
+import { Header } from 'semantic-ui-react';
+import appStyles from './app.css';
 
-/**
- *  App component... Super cool
- */
 class App extends React.Component {
 
 	constructor(props) {
@@ -13,17 +11,13 @@ class App extends React.Component {
 		this.onChange = this.onChange.bind(this);
 	}
 
-	/**
-	 * @description Changes state
-	 * @returns {String} Nothing. Just sets state
-	 */
 	onChange() {
 		this.setState({ isChecked: !this.state.isChecked });
 	}
 
 	render() {
 		return (
-			<h1>Hoola</h1>
+			<Header>Hoola</Header>
 		);
 	}
 }
