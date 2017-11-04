@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import { Form, Header, Button, Message } from 'semantic-ui-react';
 import axios from 'axios';
@@ -59,7 +57,7 @@ class Login extends React.Component {
 
                 this.setState(st);
             })
-            .catch(err => {
+            .catch(() => {
                 this.setState({
                     loading: false,
                     errorWarning: true,
@@ -103,7 +101,5 @@ class Login extends React.Component {
         )
     }
 }
-
-
 
 export default Login;

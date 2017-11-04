@@ -9,19 +9,3 @@ describe('Easy one', () => {
         expect(2 + 2).toBe(4);
     })
 })
-
-describe('Dom Testing', () => {
-
-    it('should render', () => {
-
-        const checkbox = shallow(
-            <App labelOn="On" labelOff="Off" />
-        );
-
-        expect(checkbox.text()).toEqual('Off');
-
-        checkbox.find('input').simulate('change');
-        
-        expect(checkbox.text()).toEqual('On');        
-    })
-})

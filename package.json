@@ -20,7 +20,8 @@
     "url": "https://github.com/pgarciaegido/gym-mate_frontend/issues"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js",
+    "moduleNameMapper": { "^.+\\.(css|less)$": "<rootDir>/src/config/CSSStub.js"}
   },
   "homepage": "https://github.com/pgarciaegido/gym-mate_frontend#readme",
   "devDependencies": {
@@ -48,6 +49,7 @@
     "glob": "^7.1.2",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
     "prettier": "^1.7.4",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.6.2",
