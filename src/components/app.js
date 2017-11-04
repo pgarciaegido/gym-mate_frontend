@@ -1,23 +1,22 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import { Route } from 'react-router-dom'; 
 import appStyles from './app.css';
+import Login from './login/Login';
 
 class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {isChecked: false};
-		
-		this.onChange = this.onChange.bind(this);
-	}
-
-	onChange() {
-		this.setState({ isChecked: !this.state.isChecked });
 	}
 
 	render() {
 		return (
-			<Header>Hoola</Header>
+			<Container>
+				<h1>Heee</h1>
+				<Route path="/login" component={Login} />
+			</Container>
 		);
 	}
 }
