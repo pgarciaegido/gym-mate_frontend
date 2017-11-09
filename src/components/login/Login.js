@@ -8,7 +8,6 @@ import './Login.css';
 
 class Login extends React.Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -71,7 +70,7 @@ class Login extends React.Component {
         const { successWarning, errorWarning, userName, errorMessage, loading } = this.state;
 
         return (
-            <div className="loginForm">
+            <div className="gm_form">
                 <Form loading={loading} onSubmit={this.handleSubmit}>
                     <Header>Login</Header>
                     <Form.Input
