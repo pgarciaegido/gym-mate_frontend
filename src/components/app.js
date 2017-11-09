@@ -2,10 +2,11 @@
 
 import React from 'react';
 import { Container } from 'semantic-ui-react';
-import { Route } from 'react-router-dom'; 
-import appStyles from './app.css';
+import { Route, Link } from 'react-router-dom'; 
 import Login from './login/Login';
 import Signup from './signup/Signup';
+
+import './app.css';
 
 class App extends React.Component {
 
@@ -16,7 +17,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<Container>
-				<h1>Heee</h1>
+				<Link to="/login"><h1>Login</h1></Link>
+				<Link to="/signup"><h1>Signup</h1></Link>
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
 			</Container>

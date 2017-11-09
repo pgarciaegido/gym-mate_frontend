@@ -21,7 +21,9 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/test-setup.js",
-    "moduleNameMapper": { "^.+\\.(css|less)$": "<rootDir>/src/config/CSSStub.js"}
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/src/config/CSSStub.js"
+    }
   },
   "homepage": "https://github.com/pgarciaegido/gym-mate_frontend#readme",
   "devDependencies": {
@@ -29,6 +31,7 @@
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-universal-import": "^1.3.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
@@ -45,6 +48,8 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "extract-css-chunks-webpack-plugin": "^2.0.17",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "glob": "^7.1.2",
     "html-webpack-plugin": "^2.30.1",
@@ -68,7 +73,9 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
+    "react-universal-component": "^2.5.5",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.75.1"
+    "semantic-ui-react": "^0.75.1",
+    "webpack-flush-chunks": "^1.2.1"
   }
 }

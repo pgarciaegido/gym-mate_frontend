@@ -1,6 +1,10 @@
 /* Place here common styles for the whole app */
-
+ 
 .gm_form{
-    max-width: 600px !important;
-    margin: 0 auto;
+     max-width: 600px !important;
+     margin: 0 auto;
+}
+    
+.gm_formInputError input {
+    background-color: red;
 }
