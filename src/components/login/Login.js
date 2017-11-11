@@ -1,9 +1,10 @@
 import React from 'react';
 import { Form, Header, Button, Message } from 'semantic-ui-react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { API_BASE_URL_LOCAL } from '../../constants/api';
-import { LOGIN_EMAIL_IS_NOT_REGISTERED, LOGIN_WRONG_PASSWORD, UNEXPECTED_PROBLEM } from '../../constants/messages';
+import { UNEXPECTED_PROBLEM } from '../../constants/messages';
 import './Login.scss';
 
 class Login extends React.Component {
@@ -78,6 +79,9 @@ class Login extends React.Component {
                         name="password"
                         onChange={this.onChange} />
                     <Button type="submit">Log in!</Button>
+                    <p className="gm_formTextBellow">If you don't have an account,
+                        <Link to="/signup"> Signup here!</Link>
+                    </p>
                 </Form>
                 {successWarning && <Message
                     success

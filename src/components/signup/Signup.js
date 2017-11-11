@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Header, Button, Message } from 'semantic-ui-react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { SIGNUP_DIFFERENT_PASSWORDS } from '../../constants/messages';
 import { API_BASE_URL_LOCAL } from '../../constants/api';
@@ -114,6 +115,9 @@ class Signup extends React.Component {
                         onChange={this.onChange}
                         className={ (nameError ? 'gm_formInputError' : '') } />
                     <Button type="submit" disabled={buttonDisabled}>Signup</Button>
+                    <p className="gm_formTextBellow">If you already have an account,
+                        <Link to="/login"> Log in here!</Link>
+                    </p>
                 </Form>
                 {successWarning && <Message
                     success
