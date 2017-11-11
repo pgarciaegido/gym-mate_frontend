@@ -23,40 +23,64 @@ class Signup extends React.Component {
             nameError: false,
             errorWarning: false,
             errorMessage: '',
-            successWarning: false
+            successWarning: false,
+            buttonDisabled: true
         }
 
         this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.everythingAlright = this.everythingAlright.bind(this);
+        this.apiError = this.apiError.bind(this);
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        const updater = { [e.target.name]: e.target.value };
+        this.setState(updater, () => {
+            if (this.state.email && this.state.password && this.state.confirmPassword && this.state.name) {
+                return this.setState({ buttonDisabled: false})
+            }
+            return this.setState({ buttonDisabled: true })
+        });
     }
-    
+
     handleSubmit(e) {
         e.preventDefault();
         // Passwords are not the same
         if (!this.comparePasswords()) {
-            return this.setState({errorWarning: true, errorMessage: SIGNUP_DIFFERENT_PASSWORDS, passwordError: true});
+            return this.setState({errorWarning: true, errorMessage: SIGNUP_DIFFERENT_PASSWORDS, passwordError: true, successWarning: false});
         }
         const { name, email, password } = this.state;
-        axios.post(`${API_BASE_URL_LOCAL}/signup`, { name, email, password })
-        // Success!
-        .then(() => this.setState({errorWarning: false, successWarning: true}))
-        .catch(({ response }) => {
-            debugger;
-            this.setState({successWarning: false, errorWarning: true, errorMessage: response.data.message})
-        })
+
+        return axios.post(`${API_BASE_URL_LOCAL}/signup`, { name, email, password })
+        .then(() => this.everythingAlright())
+        .catch(({ response }) => this.apiError(response));
     }
 
     comparePasswords() {
         return this.state.password === this.state.confirmPassword;
     }
 
+    everythingAlright() {
+        this.setState({
+            errorWarning: false,
+            successWarning: true,
+            emailError: false,
+            passwordError: false,
+            nameError: false,
+            loading: false
+        })
+    }
+
+    apiError(response) {
+        this.setState({
+            successWarning: false,
+            errorWarning: true,
+            errorMessage: response.data.message
+        })
+    }
+
     render() {
-        let { loading, errorMessage, errorWarning, name, successWarning, emailError, passwordError, nameError } = this.state;
-        passwordError = true;
+        const { loading, errorMessage, errorWarning, name, successWarning, emailError, passwordError, nameError, buttonDisabled } = this.state;
         return(
             <div className="gm_form" onSubmit={this.handleSubmit}>
                 <Form loading={loading}>
@@ -89,7 +113,7 @@ class Signup extends React.Component {
                         placeholder='John Doe'
                         onChange={this.onChange}
                         className={ (nameError ? 'gm_formInputError' : '') } />
-                    <Button type="submit">Signup</Button>
+                    <Button type="submit" disabled={buttonDisabled}>Signup</Button>
                 </Form>
                 {successWarning && <Message
                     success
