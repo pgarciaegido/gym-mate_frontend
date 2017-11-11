@@ -1,7 +1,12 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    allChunks: true
+});
 
 module.exports = {
     entry: {
@@ -12,7 +17,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Gym Mate',
             template: 'src/index.html'
-        })
+        }),
+        extractSass
     ],
     module: {
         rules: [
@@ -27,11 +33,11 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
+                test: /\.(css|scss)$/,
+                use: ExtractTextPlugin.extract({
+					fallback: 'style-loader/url!file-loader',
+					use: ['css-loader', 'sass-loader'],
+				}),
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,

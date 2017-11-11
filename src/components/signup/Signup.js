@@ -5,7 +5,7 @@ import axios from 'axios';
 import { SIGNUP_DIFFERENT_PASSWORDS } from '../../constants/messages';
 import { API_BASE_URL_LOCAL } from '../../constants/api';
 
-import './Signup.css';
+import './Signup.scss';
 
 class Signup extends React.Component {
     

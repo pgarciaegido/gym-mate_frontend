@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { API_BASE_URL_LOCAL } from '../../constants/api';
 import { LOGIN_EMAIL_IS_NOT_REGISTERED, LOGIN_WRONG_PASSWORD } from '../../constants/messages';
-import './Login.css';
+import './Login.scss';
 
 class Login extends React.Component {
 

@@ -6,7 +6,7 @@ import { Route, Link } from 'react-router-dom';
 import Login from './login/Login';
 import Signup from './signup/Signup';
 
-import './app.css';
+import './app.scss';
 
 class App extends React.Component {
 
