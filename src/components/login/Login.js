@@ -3,7 +3,7 @@ import { Form, Header, Button, Message } from 'semantic-ui-react';
 import axios from 'axios';
 
 import { API_BASE_URL_LOCAL } from '../../constants/api';
-import { LOGIN_EMAIL_IS_NOT_REGISTERED, LOGIN_WRONG_PASSWORD } from '../../constants/messages';
+import { LOGIN_EMAIL_IS_NOT_REGISTERED, LOGIN_WRONG_PASSWORD, UNEXPECTED_PROBLEM } from '../../constants/messages';
 import './Login.scss';
 
 class Login extends React.Component {
@@ -21,6 +21,8 @@ class Login extends React.Component {
         }
         this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.everythingAlright = this.everythingAlright.bind(this);
+        this.apiError = this.apiError.bind(this);
     }
 
     onChange(e) {
@@ -34,36 +36,26 @@ class Login extends React.Component {
         const { email, password } = this.state;
 
         axios.post(`${API_BASE_URL_LOCAL}/login`, { email, password })
-            .then(({ data }) => {
-                this.setState({ loading: false });
+            .then(() => this.everythingAlright())
+            .catch(({response}) => this.apiError(response));
+    }
 
-                const st = {};
+    everythingAlright() {
+        this.setState({
+            loading: false,
+            errorWarning: false,
+            successWarning: true
+        })
+    }
 
-                switch (data) {
-                    case 'USER_DOES_NOT_EXIST':
-                        st.errorWarning = true;
-                        st.errorMessage = LOGIN_EMAIL_IS_NOT_REGISTERED;
-                        break;
-                    case 'WRONG_PASSWORD':
-                        st.errorWarning = true;
-                        st.errorMessage = LOGIN_WRONG_PASSWORD;
-                        break;
-                    default:
-                        st.successWarning = true;
-                        st.userName = data.name;
-                        st.errorWarning = false;
-                }
-
-                this.setState(st);
-            })
-            .catch(() => {
-                this.setState({
-                    loading: false,
-                    errorWarning: true,
-                    successWarning: false,
-                    errorMessage: "There is been an error. Please try again."
-                });
-            });
+    apiError(response) {
+        const st = {
+            loading: false,
+            errorWarning: true,
+            successWarning: false
+        }
+        st.errorMessage = response ?  response.data.message : UNEXPECTED_PROBLEM;
+        this.setState(st);
     }
 
     render() {
