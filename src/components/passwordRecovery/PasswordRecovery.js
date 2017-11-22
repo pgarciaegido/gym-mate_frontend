@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Header, Segment, Button, Message } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { API_BASE_URL_LOCAL } from '../../constants/api';

@@ -24,7 +24,7 @@ class App extends React.Component {
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
 				<Route path="/password-recovery" component={ PasswordRecovery } />
-				<Route path="/change-password/:email/:token" component={ ChangePassword } />
+				<Route path="/change-password" component={ ChangePassword } />
 			</Container>
 		);
 	}

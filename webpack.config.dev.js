@@ -11,8 +11,6 @@ module.exports = merge(common, {
     devServer: {
         contentBase: 'dist',
         hot: true,
-        historyApiFallback: {
-            index: 'dist/index.html'
-        }
+        historyApiFallback: true
     }
 });
