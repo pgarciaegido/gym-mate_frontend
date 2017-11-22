@@ -9,8 +9,10 @@ module.exports = merge(common, {
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: 'dist',
         hot: true,
-        historyApiFallback: true
+        historyApiFallback: {
+            index: 'dist/index.html'
+        }
     }
 });

@@ -82,6 +82,9 @@ class Login extends React.Component {
                     <p className="gm_formTextBellow">If you don't have an account,
                         <Link to="/signup"> Signup here!</Link>
                     </p>
+                    <p className="gm_formTextBellow">
+                        <Link to="/password-recovery">I've forgotten my password!</Link>
+                    </p>
                 </Form>
                 {successWarning && <Message
                     success

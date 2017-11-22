@@ -5,6 +5,8 @@ import { Container } from 'semantic-ui-react';
 import { Route, Link } from 'react-router-dom'; 
 import Login from './login/Login';
 import Signup from './signup/Signup';
+import PasswordRecovery from './passwordRecovery/PasswordRecovery';
+import ChangePassword from './passwordRecovery/ChangePassword';
 
 import './app.scss';
 
@@ -21,6 +23,8 @@ class App extends React.Component {
 				<Link to="/signup"><h1>Signup</h1></Link>
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
+				<Route path="/password-recovery" component={ PasswordRecovery } />
+				<Route path="/change-password/:email/:token" component={ ChangePassword } />
 			</Container>
 		);
 	}
