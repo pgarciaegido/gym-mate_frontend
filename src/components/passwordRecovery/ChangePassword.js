@@ -14,8 +14,12 @@ class ChangePassword extends React.Component {
             loading: true,
             password: '',
             passwordConf: '',
-            wrongCredentials: false,
-            credentials: {}
+            error: false,
+            unauthorized: false,
+            errorMessage: '',
+            credentials: {},
+            buttonDisabled: true,
+            success: false
         }
 
         this.onChange = this.onChange.bind(this);
@@ -25,15 +29,14 @@ class ChangePassword extends React.Component {
 
     
     componentDidMount() {
+        // Check first that new password has been requested using these credentials.
         const credentials = queryString.parse(this.props.location.search);
         axios.get(`${API_BASE_URL_LOCAL}/introduce-new-password/${credentials.email}/${credentials.token}`)
-        .then((res) => {
-            console.log(res);
+        .then(() => {
             this.setState({ loading: false, credentials });
         })
-        .catch((err) => {
-            console.log(err)
-            this.setState({ loading: false, wrongCredentials: true });
+        .catch(() => {
+            this.setState({ loading: false, error: true, unauthorized: true, errorMessage: 'Unauthorized! Your token is invalid.' });
         });
     }
     
@@ -42,20 +45,28 @@ class ChangePassword extends React.Component {
     }
 
     handleSubmit() {
-        if (this.passwordsAreEqual()) {
-            const newPass = { password: this.state.password };
-            axios.post(`${API_BASE_URL_LOCAL}/introduce-new-password/${this.state.credentials.email}/${this.state.credentials.token}`, newPass)
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
-        }
+        this.setState({ loading: true });
+        const newPass = { password: this.state.password };
+        axios.post(`${API_BASE_URL_LOCAL}/introduce-new-password/${this.state.credentials.email}/${this.state.credentials.token}`, newPass)
+            .then(() => {
+                this.setState({ success: true, error: false, loading: false })
+            })
+            .catch(() => {
+                this.setState({ error: true, errorMessage: 'Error saving your new password', success: false, loading: false });
+            });     
     }
 
     passwordsAreEqual() {
-        return this.state.password === this.state.passwordConf;
+        if (this.state.password === this.state.passwordConf) {
+            this.setState({ buttonDisabled: false, error: false });
+        }
+        else {
+            this.setState({ buttonDisabled: true, error: true, errorMessage: 'Passwords are not equal'});
+        }
     }
 
     render() {
-        const { loading, wrongCredentials } = this.state;
+        const { loading, error, errorMessage, buttonDisabled, unauthorized, success } = this.state;
         return(
             <div className="gm_form" onSubmit={this.handleSubmit}>
                 <Form loading={loading}>
@@ -67,7 +78,7 @@ class ChangePassword extends React.Component {
                         label="Enter new password"
                         placeholder="supersecret"
                         onChange={this.onChange}
-                        disabled={wrongCredentials} />
+                        disabled={unauthorized} />
                     <Form.Input
                         type="password"
                         value={this.state.passwordConf}
@@ -75,12 +86,17 @@ class ChangePassword extends React.Component {
                         label="Enter new password again"
                         placeholder="supersecret"
                         onChange={this.onChange}
-                        disabled={wrongCredentials} />
-                    <Button type="submit" disabled={wrongCredentials}>Set new password!</Button>
+                        disabled={unauthorized}
+                        onBlur={this.passwordsAreEqual} />
+                    <Button type="submit" disabled={buttonDisabled}>Set new password!</Button>
                 </Form>
-                {wrongCredentials && <Message negative>
+                {error && <Message negative>
                     <Message.Header>Error!</Message.Header>
-                    <p>Your credentials are incorrect.</p>
+                    <p>{errorMessage}</p>
+                </Message>}
+                {success && <Message success>
+                    <Message.Header>Success!</Message.Header>
+                    <p>Your password has been changed</p>
                 </Message>}
             </div>
         )
